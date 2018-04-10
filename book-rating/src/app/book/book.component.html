@@ -3,4 +3,6 @@
   {{ book.description }}
 </p>
 
-<button class="btn btn-primary">Test</button>
+<button [ngClass]="'{
+  xxx: true
+}'" class="btn btn-primary">Test</button>
