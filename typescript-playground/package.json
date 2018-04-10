@@ -4,11 +4,15 @@
   "description": "mit first playground",
   "main": "index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "webpack"
   },
   "author": "",
   "license": "UNLICENSED",
-  "dependencies": {
-    "typescript": "^2.8.1"
+  "dependencies": {},
+  "devDependencies": {
+    "ts-loader": "^4.2.0",
+    "typescript": "^2.8.1",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14"
   }
 }
