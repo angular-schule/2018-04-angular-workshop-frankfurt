@@ -1,8 +1,24 @@
-<h2>{{ book.title }}</h2> - {{ book.rating }}
-<p>
-  {{ book.description }}
-</p>
+<div class="card mb-4">
 
-<button [ngClass]="'{
-  xxx: true
-}'" class="btn btn-primary">Test</button>
+  <div class="card-body bg-light">
+
+    <img class="img-thumbnail float-right"
+      src="//api.angular.schule/avatar/{{ book.rating }}">
+
+    <div class="card-title">
+      <h2>{{ book.title }}
+        <span class="badge badge-secondary">{{ book.rating }}</span>
+      </h2>
+    </div>
+
+  <p>
+    {{ book.description }}
+  </p>
+
+  <!-- TODO: pfui! -->
+  <button class="btn btn-danger"
+    (click)="book.rating = book.rating + 1">+1</button>
+
+  </div>
+
+</div>
