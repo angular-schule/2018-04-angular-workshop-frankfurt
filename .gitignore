@@ -1,4 +1,4 @@
 node_modules
-/typescript-playground/*.js
 /typescript-playground/*.map
 /typescript-playground/dist/bundle.js
+/.DS_Store
