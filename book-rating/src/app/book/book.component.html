@@ -15,11 +15,10 @@
     {{ book.description }}
   </p>
 
-  <!-- TODO: pfui! -->
-  <button class="btn btn-danger mr-2"
-    (click)="book.rating = book.rating + 1">+1</button>
 
-  <button class="btn btn-danger">Test</button>
+  <button class="btn btn-danger mr-2" (click)="rateDown()">-1</button>
+
+  <button class="btn btn-danger" (click)="rateUp()">+1</button>
 
   </div>
 

@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { BookRatingService } from './../shared/book-rating.service';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Book } from '../shared/book';
+import { Output } from '@angular/core';
 
 @Component({
   selector: 'br-book',
@@ -7,13 +9,21 @@ import { Book } from '../shared/book';
   styleUrls: ['./book.component.scss'],
   preserveWhitespaces: false
 })
-export class BookComponent implements OnInit {
+export class BookComponent {
 
   @Input() book: Book;
+  @Output() rate = new EventEmitter<Book>();
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private br: BookRatingService) {
   }
 
+  rateUp() {
+    const ratedBook = this.br.rateUp(this.book);
+    this.rate.emit(ratedBook);
+  }
+
+  rateDown() {
+    const ratedBook = this.br.rateDown(this.book);
+    this.rate.emit(ratedBook);
+  }
 }

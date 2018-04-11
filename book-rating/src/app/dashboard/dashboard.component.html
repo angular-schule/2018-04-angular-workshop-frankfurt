@@ -1,6 +1,7 @@
 <br-book
   *ngFor="let b of books"
   [book]="b"
+  (rate)="didRateBook($event)"
 ></br-book>
 
 
