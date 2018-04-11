@@ -7,13 +7,13 @@ fdescribe('BookComponent', () => {
   let component: BookComponent;
   let fixture: ComponentFixture<BookComponent>;
 
-  let rateUpWasCalled: boolean;
   const ratingMock = {
-    rateUp: () => rateUpWasCalled = true,
+    rateUp: () => {},
     rateDown: () => {},
   };
 
   beforeEach(async(() => {
+    spyOn(ratingMock, 'rateUp');
     TestBed.configureTestingModule({
       declarations: [ BookComponent ],
       // Integrations-Test
@@ -26,10 +26,14 @@ fdescribe('BookComponent', () => {
       ]
     })
     .compileComponents();
+
+    setTimeout(() => {
+      console.log('hallo');
+    }, 4000);
+
   }));
 
   beforeEach(() => {
-    rateUpWasCalled = false;
     fixture = TestBed.createComponent(BookComponent);
     component = fixture.componentInstance;
     component.book = {
@@ -43,7 +47,7 @@ fdescribe('BookComponent', () => {
 
   it('should forward the rateUp call on rateUp() ', () => {
     component.rateUp();
-    expect(rateUpWasCalled).toBe(true);
+    expect(ratingMock.rateUp).toHaveBeenCalled();
   });
 
   it('should create', () => {
