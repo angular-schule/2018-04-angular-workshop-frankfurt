@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Book } from '../shared/book';
+import { ViewChildren } from '@angular/core';
+import { BookComponent } from '../book/book.component';
 
 
 @Component({
@@ -7,12 +9,23 @@ import { Book } from '../shared/book';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
+
+  @ViewChildren(BookComponent)
+  bookComponents: BookComponent[];
 
   books: Book[];
   constructor() { }
 
+  ngAfterViewInit() {
+    debugger;
+    console.log(this.bookComponents);
+  }
+
   ngOnInit() {
+
+    debugger
+
     this.books = [
       {
         isbn: '000',
