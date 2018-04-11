@@ -7,8 +7,6 @@ export class BookRatingService {
   private minRating = 1;
   private maxRating = 5;
 
-  constructor() { }
-
   rateUp(book: Book): Book {
     return {
       ...book,
