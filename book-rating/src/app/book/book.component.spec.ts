@@ -2,8 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BookComponent } from './book.component';
 import { BookRatingService } from '../shared/book-rating.service';
+import { By } from '@angular/platform-browser';
 
-fdescribe('BookComponent', () => {
+describe('BookComponent', () => {
   let component: BookComponent;
   let fixture: ComponentFixture<BookComponent>;
 
@@ -27,9 +28,12 @@ fdescribe('BookComponent', () => {
     })
     .compileComponents();
 
+    // possible, because of async()
+    /*
     setTimeout(() => {
       console.log('hallo');
     }, 4000);
+    */
 
   }));
 
@@ -47,6 +51,12 @@ fdescribe('BookComponent', () => {
 
   it('should forward the rateUp call on rateUp() ', () => {
     component.rateUp();
+    expect(ratingMock.rateUp).toHaveBeenCalled();
+  });
+
+  it('should rateUp() when the button is clicked', () => {
+    const rateUpBtn = fixture.debugElement.query(By.css('[testRateUp]')).nativeElement as HTMLButtonElement;
+    rateUpBtn.click();
     expect(ratingMock.rateUp).toHaveBeenCalled();
   });
 
