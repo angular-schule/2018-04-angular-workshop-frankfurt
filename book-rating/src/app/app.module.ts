@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookComponent } from './book/book.component';
+import { BookRatingService } from './shared/book-rating.service';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { BookComponent } from './book/book.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [BookRatingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
