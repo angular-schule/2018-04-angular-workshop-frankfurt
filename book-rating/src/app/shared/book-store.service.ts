@@ -19,13 +19,10 @@ export class BookStoreService {
   }
 
   sendBook(book: Book) {
-    const x = this.http
-      .post(`${ this.url }/book`, book) // HOT
+    return this.http
+      .post(`${ this.url }/book`, book)
       .pipe(
-        share()   // COLD (a simple cache)
+        retry(3)
       );
-
-    x.subscribe();
-    x.subscribe();
   }
 }

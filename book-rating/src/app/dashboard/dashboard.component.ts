@@ -20,7 +20,10 @@ export class DashboardComponent implements OnInit {
 
   addBook(book: Book) {
     this.didRateBook(book);
-    this.store.sendBook(book);
+    this.store.sendBook(book)
+      .subscribe(
+        () => {},
+        (error) => console.log);
   }
 
   // https://angular.schule/blog/2018-03-pure-immutable-operations
