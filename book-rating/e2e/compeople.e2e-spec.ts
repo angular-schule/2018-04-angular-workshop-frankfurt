@@ -1,4 +1,4 @@
-import { browser, element, by } from 'protractor';
+import { browser, element, by, $ } from 'protractor';
 
 describe('compeople imprint', () => {
 
@@ -7,9 +7,8 @@ describe('compeople imprint', () => {
   it('should show the tax numer', () => {
 
     browser.get('https://www.compeople.de/impressum.html');
-
-    const text = element(by.className('content'));
-    expect(text.getText()).toContain('DE207665352');
+    const text = $('.content').getText();
+    expect(text).toContain('DE207665352');
   });
 
   afterAll(() => browser.waitForAngularEnabled(true));
