@@ -1,4 +1,6 @@
-<form [formGroup]="bookForm">
+<form [formGroup]="bookForm" #test="ngForm">
+
+  <button (click)="test.reset()">RESET</button>
 
   <div class="form-group">
     <label for="isbn">ISBN</label>
@@ -16,10 +18,11 @@
     <div class="feedback-red" *ngIf="hasError('isbn', 'minlength')">
       Bitte geben Sie min. 10 Zeichen an.
     </div>
+
   </div>
 
   <div class="form-group">
-    <label for="title">Titel</label>
+    <label for="title">Titel*</label>
     <input formControlName="title" type="text" class="form-control" id="title">
 
     <div class="feedback-red" [hidden]="!isInvalid('title')">
@@ -34,7 +37,7 @@
   </div>
 
   <div class="form-group">
-    <button type="submit" class="btn btn-danger">Erzeugen</button>
+    <button type="submit" class="btn btn-danger" [disabled]="bookForm.invalid">Erzeugen</button>
   </div>
 
 </form>
