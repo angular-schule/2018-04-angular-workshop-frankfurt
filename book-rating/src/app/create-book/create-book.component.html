@@ -1,6 +1,4 @@
-<form [formGroup]="bookForm" #test="ngForm">
-
-  <button (click)="test.reset()">RESET</button>
+<form [formGroup]="bookForm" (ngSubmit)="submitForm()">
 
   <div class="form-group">
     <label for="isbn">ISBN</label>

@@ -1,3 +1,4 @@
+import { BookStoreService } from './../shared/book-store.service';
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../shared/book';
 
@@ -9,33 +10,17 @@ import { Book } from '../shared/book';
 })
 export class DashboardComponent implements OnInit {
 
-  books: Book[];
-  constructor() { }
+  books: Book[] = [];
+  constructor(private store: BookStoreService) { }
 
   ngOnInit() {
-    this.books = [
-      {
-        isbn: '000',
-        title: 'Angular',
-        description: 'tolles Buch',
-        rating: 5
-      },
-      {
-        isbn: '111',
-        title: 'AngularJS',
-        description: 'auch gutes Buch',
-        rating: 3
-      },
-      {
-        isbn: '22',
-        title: 'test',
-        description: 'test',
-        rating: 2
-      }
-    ];
+    this.store.getAll()
+      .subscribe(books => this.books = books);
   }
 
-
+  addBook(book: Book) {
+    this.didRateBook(book);
+  }
 
   // https://angular.schule/blog/2018-03-pure-immutable-operations
   didRateBook(book: Book) {

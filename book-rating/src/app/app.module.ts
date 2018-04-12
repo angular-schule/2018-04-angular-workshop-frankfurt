@@ -8,6 +8,8 @@ import { BookComponent } from './book/book.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookRatingService } from './shared/book-rating.service';
 import { CreateBookComponent } from './create-book/create-book.component';
+import { HttpClientModule } from '@angular/common/http';
+import { BookStoreService } from './shared/book-store.service';
 
 
 @NgModule({
@@ -20,9 +22,10 @@ import { CreateBookComponent } from './create-book/create-book.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [BookRatingService],
+  providers: [BookRatingService, BookStoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
