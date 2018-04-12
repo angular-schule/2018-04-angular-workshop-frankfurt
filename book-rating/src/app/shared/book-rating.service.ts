@@ -20,4 +20,12 @@ export class BookRatingService {
       rating: book.rating > this.minRating ? book.rating - 1 : this.minRating
     };
   }
+
+  rateDownAllowed(book: Book) {
+    return book.rating > this.minRating;
+  }
+
+  rateUpAllowed(book: Book) {
+    return book.rating < this.maxRating;
+  }
 }

@@ -13,12 +13,18 @@
 
   <p>
     {{ book.description }}
+
+    <ng-content></ng-content>
   </p>
 
 
-  <button class="btn btn-danger mr-2" (click)="rateDown()">-1</button>
+  <button
+    [disabled]="!br.rateDownAllowed(book)"
+    class="btn btn-danger mr-2" (click)="rateDown()">-1</button>
 
-  <button testRateUp class="btn btn-danger" (click)="rateUp()">+1</button>
+  <button
+    [disabled]="!br.rateUpAllowed(book)"
+    testRateUp class="btn btn-danger" (click)="rateUp()">+1</button>
 
   </div>
 

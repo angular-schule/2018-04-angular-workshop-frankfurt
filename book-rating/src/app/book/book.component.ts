@@ -14,7 +14,7 @@ export class BookComponent {
   @Input() book: Book;
   @Output() rate = new EventEmitter<Book>();
 
-  constructor(private br: BookRatingService) {
+  constructor(public br: BookRatingService) {
   }
 
   rateUp() {
