@@ -11,6 +11,9 @@ describe('BookComponent', () => {
   const ratingMock = {
     rateUp: () => {},
     rateDown: () => {},
+    // immer schön die Tests nachziehen! :-)
+    rateDownAllowed: () => true,
+    rateUpAllowed: () => true
   };
 
   beforeEach(async(() => {
