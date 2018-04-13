@@ -29,7 +29,9 @@
 
     <small>
       Bücher mit diesem Titel:<br>
-      | async
+      <ul>
+        <li *ngFor="let r of results$ | async">{{ r.title }}</li>
+      </ul>
     </small>
 
   </div>

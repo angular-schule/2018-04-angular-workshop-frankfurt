@@ -4,7 +4,8 @@ import { FormGroup, Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { Output } from '@angular/core';
 import { Book } from '../shared/book';
-import { tap, map, distinctUntilChanged, debounceTime, switchMap } from 'rxjs/operators';
+import { tap, map, distinctUntilChanged, debounceTime, switchMap, catchError, filter } from 'rxjs/operators';
+import { Observable, of, empty } from 'rxjs';
 
 export interface HasTitle {
   title: string;
@@ -18,6 +19,7 @@ export interface HasTitle {
 export class CreateBookComponent implements OnInit {
 
   bookForm: FormGroup;
+  results$: Observable<Book[]>;
 
   @Output() createBook = new EventEmitter<Book>();
 
@@ -33,16 +35,16 @@ export class CreateBookComponent implements OnInit {
       description: new FormControl('')
     });
 
-    this.bookForm.valueChanges.pipe(
+    this.results$ = this.bookForm.valueChanges.pipe(
       map((value: HasTitle) => value.title),
+      // filter(title => title !== ''),
       debounceTime(500),
       distinctUntilChanged(),
-      switchMap(title => this.bs.search(title)),
-      tap(console.log)
-
-    ).subscribe();
-
-
+      switchMap(title => this.bs.search(title).pipe(
+        // catchError(() => empty()) // zeigt das letzte Ergebnis an
+        catchError(() => of([])) // löscht die Liste
+      ))
+    );
   }
 
   isInvalid(name: string) {
