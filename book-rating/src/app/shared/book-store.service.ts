@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Book } from './book';
-import { retry, share } from 'rxjs/operators';
+import { retry, share, catchError, delay } from 'rxjs/operators';
+import { of, Observable } from 'rxjs';
 
 @Injectable()
 export class BookStoreService {
@@ -10,11 +11,18 @@ export class BookStoreService {
 
   url = 'https://api.angular.schule';
 
-  getAll() {
+  getAll(): Observable<Book[]> {
     return this.http
       .get<Book[]>(`${ this.url }/books`)
       .pipe(
-        retry(3)
+        retry(3),
+        catchError(err => of([{
+          isbn: 'xxx',
+          title: 'error',
+          description: 'sorry, the internet is broken',
+          rating: 0
+        }])),
+        delay(2000)
       );
   }
 
