@@ -1,6 +1,7 @@
 import { BookStoreService } from './../shared/book-store.service';
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../shared/book';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -11,11 +12,17 @@ import { Book } from '../shared/book';
 export class DashboardComponent implements OnInit {
 
   books: Book[] = [];
+
+  books$: Observable<Book[]>;
   constructor(private store: BookStoreService) { }
 
   ngOnInit() {
-    this.store.getAll()
-      .subscribe(books => this.books = books);
+
+    this.books$ = this.store.getAll();
+
+
+    // this.store.getAll()
+    //  .subscribe(books => this.books = books);
   }
 
   addBook(book: Book) {

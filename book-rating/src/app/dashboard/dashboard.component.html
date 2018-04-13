@@ -2,6 +2,21 @@
   (createBook)="addBook($event)"
 ></br-create-book>
 
+<!-- NEU -->
+<ng-container *ngIf="books$ | async as books">
+  <br-book
+    *ngFor="let b of books"
+    [book]="b"
+  ></br-book>
+</ng-container>
+
+<strong *ngIf="! (books$ | async)">
+Bücher werden geladen!
+</strong>
+
+
+<hr>
+
 <br-book
   *ngFor="let b of books"
   [book]="b"
