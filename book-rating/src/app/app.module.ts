@@ -10,6 +10,7 @@ import { BookRatingService } from './shared/book-rating.service';
 import { CreateBookComponent } from './create-book/create-book.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BookStoreService } from './shared/book-store.service';
+import { BookDetailsComponent } from './book-details/book-details.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { BookStoreService } from './shared/book-store.service';
     AppComponent,
     DashboardComponent,
     BookComponent,
-    CreateBookComponent
+    CreateBookComponent,
+    BookDetailsComponent
   ],
   imports: [
     BrowserModule,

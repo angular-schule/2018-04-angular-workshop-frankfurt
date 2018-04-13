@@ -24,7 +24,9 @@
 
   <button
     [disabled]="!br.rateUpAllowed(book)"
-    testRateUp class="btn btn-danger" (click)="rateUp()">+1</button>
+    testRateUp class="btn btn-danger mr-2" (click)="rateUp()">+1</button>
+
+  <a [routerLink]="['/book', book.isbn]" class="btn btn-primary">Details</a>
 
   </div>
 
