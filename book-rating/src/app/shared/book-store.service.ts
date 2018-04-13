@@ -21,8 +21,7 @@ export class BookStoreService {
           title: 'error',
           description: 'sorry, the internet is broken',
           rating: 0
-        }])),
-        delay(2000)
+        }]))
       );
   }
 
@@ -32,5 +31,11 @@ export class BookStoreService {
       .pipe(
         retry(3)
       );
+  }
+
+  search(searchTerm: string): Observable<Book[]> {
+
+    return this.http
+      .get<Book[]>(`${ this.url }/books/search/${ searchTerm }`);
   }
 }
