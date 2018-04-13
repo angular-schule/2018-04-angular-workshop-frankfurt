@@ -3,16 +3,16 @@
 ></br-create-book>
 
 <!-- NEU -->
-<ng-container *ngIf="books$ | async as books">
+<ng-container *ngIf="books$ | async as books; else loading">
   <br-book
     *ngFor="let b of books"
     [book]="b"
   ></br-book>
 </ng-container>
 
-<strong *ngIf="! (books$ | async)">
-Bücher werden geladen!
-</strong>
+<ng-template #loading>
+  <strong>Bücher werden geladen</strong>
+</ng-template>
 
 
 <hr>
